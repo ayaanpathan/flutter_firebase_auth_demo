@@ -56,7 +56,6 @@ class _ProfilePageState extends State<ProfilePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-
             Container(
               width: double.maxFinite,
               color: Colors.blue.withOpacity(0.35),
@@ -70,7 +69,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(
-                          image: imageProvider, fit: BoxFit.cover),
+                          image: imageProvider, fit: BoxFit.fitHeight),
                     ),
                   ),
                   placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
