@@ -68,8 +68,10 @@ class _RegisterPageState extends State<RegisterPage> {
               children: [
                 image == null
                     ? Material(
+                        borderRadius: BorderRadius.circular(50),
                         color: Colors.blue,
                         child: InkWell(
+                          borderRadius: BorderRadius.circular(50),
                           onTap: () async {
                             image = await _picker.pickImage(
                                 source: ImageSource.gallery);
@@ -86,18 +88,21 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                         ),
                       )
-                    : InkWell(
-                        onTap: () async {
-                          image = await _picker.pickImage(
-                              source: ImageSource.gallery);
-                          setState(() {});
-                        },
-                        child: SizedBox(
-                          height: 100,
-                          width: 100,
-                          child: Image.file(File(image!.path),
-                              fit: BoxFit.fill, height: 100, width: 100),
-                        ),
+                    : Material(
+                        borderRadius: BorderRadius.circular(50),
+                        child: InkWell(
+                            onTap: () async {
+                              image = await _picker.pickImage(
+                                  source: ImageSource.gallery);
+                              setState(() {});
+                            },
+                            child: CircleAvatar(
+                              radius: 60.0,
+                              backgroundImage: FileImage(
+                                File(image!.path),
+                              ),
+                              backgroundColor: Colors.transparent,
+                            )),
                       ),
                 const SizedBox(
                   height: 25,
@@ -220,17 +225,21 @@ class _RegisterPageState extends State<RegisterPage> {
                               currentDate.day,
                               currentDate.hour,
                               currentDate.minute);
-                          final date = await showDatePicker(context: context, initialDate: currentDate, firstDate: endDate, lastDate: DateTime.now());
-                          if(date != null) {
+                          final date = await showDatePicker(
+                              context: context,
+                              initialDate: currentDate,
+                              firstDate: endDate,
+                              lastDate: DateTime.now());
+                          if (date != null) {
                             setState(() {
-                              _dobTextController.text = '${date.day}/${date.month}/${date.year}';
+                              _dobTextController.text =
+                                  '${date.day}/${date.month}/${date.year}';
                             });
                           }
                         },
-                        validator: (value) =>
-                            Validator.validateDate(
-                              date: value,
-                            ),
+                        validator: (value) => Validator.validateDate(
+                          date: value,
+                        ),
                         decoration: InputDecoration(
                           hintText: "Date of birth",
                           errorBorder: UnderlineInputBorder(
@@ -285,17 +294,13 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   void _register() async {
-    User? user = await FireAuth
-        .registerUsingEmailPassword(
+    User? user = await FireAuth.registerUsingEmailPassword(
       name: _nameTextController.text,
       email: _emailTextController.text,
       password: _passwordTextController.text,
     );
 
-    FirebaseFirestore.instance
-        .collection('users')
-        .doc(user?.uid)
-        .set({
+    FirebaseFirestore.instance.collection('users').doc(user?.uid).set({
       'name': _nameTextController.text,
       'uid': user?.uid,
       'email': _emailTextController.text,
@@ -304,29 +309,24 @@ class _RegisterPageState extends State<RegisterPage> {
       'mobile_number': _mobileNumberTextController.text
     });
 
-    final storageRef =
-    FirebaseStorage.instance.ref();
+    final storageRef = FirebaseStorage.instance.ref();
     String filePath = image!.path;
     File file = File(filePath);
-    final mountainsRef =
-    storageRef.child(user!.uid);
+    final mountainsRef = storageRef.child(user!.uid);
     try {
       await mountainsRef.putFile(file);
     } on FirebaseException catch (e) {
       // ...
     }
 
-    final imageUrl = await storageRef
-        .child(user.uid)
-        .getDownloadURL();
+    final imageUrl = await storageRef.child(user.uid).getDownloadURL();
 
     setState(() {
       _isProcessing = false;
     });
 
     if (user != null) {
-      Navigator.of(context, rootNavigator: true)
-          .pushAndRemoveUntil(
+      Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
         MaterialPageRoute(
           builder: (context) => BottomNavBar(
             user: user,
