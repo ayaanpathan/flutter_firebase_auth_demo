@@ -1,12 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth_demo/screens/bottom_nav_bar.dart';
-import 'package:firebase_auth_demo/screens/register_page.dart';
+import 'package:firebase_auth_demo/screens/auth/register_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
-import '../utils/fire_auth.dart';
-import '../utils/validator.dart';
+import '../../utils/fire_auth.dart';
+import '../../utils/validator.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);

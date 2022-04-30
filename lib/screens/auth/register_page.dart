@@ -8,9 +8,9 @@ import 'package:country_picker/country_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../utils/fire_auth.dart';
-import '../utils/validator.dart';
-import 'bottom_nav_bar.dart';
+import '../../utils/fire_auth.dart';
+import '../../utils/validator.dart';
+import '../bottom_nav_bar.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);

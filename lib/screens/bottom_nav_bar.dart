@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_auth_demo/screens/cart_page.dart';
-import 'package:firebase_auth_demo/screens/home_page.dart';
-import 'package:firebase_auth_demo/screens/my_orders_page.dart';
-import 'package:firebase_auth_demo/screens/profile_page.dart';
+import 'package:firebase_auth_demo/screens/cart/cart_page.dart';
+import 'package:firebase_auth_demo/screens/Home/home_page.dart';
+import 'package:firebase_auth_demo/screens/orders/my_orders_page.dart';
+import 'package:firebase_auth_demo/screens/profile/profile_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
@@ -37,7 +37,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     return [
       PersistentBottomNavBarItem(
         icon: const Icon(CupertinoIcons.home),
-        title: ("Home"),
+        title: ("home"),
         activeColorPrimary: CupertinoColors.activeBlue,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
