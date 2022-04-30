@@ -71,27 +71,22 @@ class _BottomNavBarState extends State<BottomNavBar> {
       items: _navBarsItems(),
       confineInSafeArea: true,
       bottomScreenMargin: 60,
-      backgroundColor: Colors.white, // Default is Colors.white.
-      handleAndroidBackButtonPress: true, // Default is true.
-      resizeToAvoidBottomInset: true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
-      stateManagement: false, // Default is true.
-      hideNavigationBarWhenKeyboardShows: true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
       decoration: NavBarDecoration(
         borderRadius: BorderRadius.circular(10.0),
         colorBehindNavBar: Colors.white,
       ),
       popAllScreensOnTapOfSelectedTab: true,
       popActionScreens: PopActionScreensType.all,
-      itemAnimationProperties: const ItemAnimationProperties( // Navigation Bar's items animation properties.
-        duration: const Duration(milliseconds: 200),
+      itemAnimationProperties: const ItemAnimationProperties(
+        duration: Duration(milliseconds: 200),
         curve: Curves.ease,
       ),
-      screenTransitionAnimation: const ScreenTransitionAnimation( // Screen transition animation on change of selected tab.
+      screenTransitionAnimation: const ScreenTransitionAnimation(
         animateTabTransition: true,
         curve: Curves.ease,
-        duration: const Duration(milliseconds: 200),
+        duration: Duration(milliseconds: 200),
       ),
-      navBarStyle: NavBarStyle.style3, // Choose the nav bar style with this property.
+      navBarStyle: NavBarStyle.style3,
     );
 
   }
